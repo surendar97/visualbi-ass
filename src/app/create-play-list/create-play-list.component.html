@@ -1,0 +1,51 @@
+<mat-spinner strokeWidth="5" [diameter]="50" class="spinner-loading" *ngIf="commonService.isLoading"></mat-spinner>
+<div fxLayout="column" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="50px">
+        <strong>
+            <span *ngIf="playListId">PlayList {{playListId}} : Editable</span>
+        </strong>
+        <mat-form-field floatLabel="never">
+            <input [(ngModel)]="playListName" matInput placeholder="Enter PlayList Name">
+        </mat-form-field>
+        <button *ngIf="playListId" mat-button (click)="addList()" color="primary">Update</button>
+        <button *ngIf="!playListId" mat-button (click)="addList()" color="primary">Create</button>
+    </div>
+    <mat-form-field class="input-field" floatLabel="never">
+        <input (keyup)="searchFilter()" [(ngModel)]="searchValue" matInput placeholder="Search for songs...">
+    </mat-form-field>
+    <div fxLayout="row">
+        <div *ngIf="playListId && !isAddNewSongs" fxLayoutGap="30px">
+            <button mat-raised-button color="primary" (click)="ShuffleList()">Shuffle Play</button>
+            <button mat-raised-button color="primary" (click)="getSongsList(); isAddNewSongs = true">Add Songs</button>
+        </div>
+        <button *ngIf="isAddNewSongs" mat-button (click)="getPlayList();isAddNewSongs = false"
+            color="primary">Back</button>
+    </div>
+    <div class="no-records" *ngIf="!filterdSongsList.length && !commonService.isLoading">
+        <ng-container *ngTemplateOutlet="noRecords"></ng-container>
+    </div>
+    <div class="content-container">
+        <div class="list-container" fxLayout="column" *ngFor="let song of filterdSongsList; let i = index">
+            <div fxLayout="row" (click)="addAndRemoveList(song)">
+                <div fxLayout="column" fxFlex="60">
+                    <span>{{song.title}}</span>
+                    <span>Aadhi</span>
+                    <span>Hiphop</span>
+                </div>
+                <div fxFlex="40" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="100px">
+                    <div fxFlex="20">
+                        <span>05.30</span>
+                    </div>
+                    <div fxFlex="80">
+                        <span *ngIf="!song.isAdded">Add to List</span>
+                        <span *ngIf="song.isAdded">Remove from List</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noRecords>
+    <span>No records</span>
+</ng-template>

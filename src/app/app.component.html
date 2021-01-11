@@ -1,0 +1,11 @@
+<div class="center-align">
+    <mat-spinner strokeWidth="5" [diameter]="50" class="spinner-loading" *ngIf="commonService.isLoading"></mat-spinner>
+    <mat-tab-group mat-align-tabs="center" animationDuration="1000ms">
+        <mat-tab label="All Songs">
+            <app-song-list></app-song-list>
+        </mat-tab>
+        <mat-tab label="Playlist">
+            <app-play-list></app-play-list>
+        </mat-tab>
+    </mat-tab-group>
+</div>

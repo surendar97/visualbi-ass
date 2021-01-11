@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}
+
+.spinner-loading {
+    position: absolute;
+    left: 49%;
+    top: 40%;
+    z-index: 10;
+}
+
+.no-records {
+    margin-top: 100px;
+    font-size: 30px;
+}

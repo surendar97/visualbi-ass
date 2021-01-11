@@ -1,0 +1,11 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <button class="create-button" mat-raised-button (click)="createPlayList()" color="primary">Create PlayList</button>
+    <div class="content-container">
+        <div class="list-container" fxLayout="column" *ngFor="let list of groupedPlayList">          
+            <div fxLayout="row" (click)="editList(list)" fxLayoutAlign="space-between center">
+                    <span>PlayList {{list}}</span>
+                        <span>Created At</span>
+                </div>
+            </div>
+        </div>
+    </div>

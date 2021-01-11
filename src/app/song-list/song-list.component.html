@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field class="search-field" floatLabel="never">
+        <input (keyup)="searchFilter()" [(ngModel)]="searchValue" matInput
+            placeholder="Search for songs...">
+    </mat-form-field>
+    <div class="no-records" *ngIf="!displayedSongsList.length && !commonService.isLoading">
+        <ng-container *ngTemplateOutlet="noRecords"></ng-container>
+    </div>
+    <div class="content-container" infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollThrottle]="throttle"
+  [scrollWindow]="false"
+  (scrolled)="onScrollDown()">
+        <div class="list-container" fxLayout="column" *ngFor="let song of displayedSongsList">
+            <div fxLayout="row">
+                <div fxLayout="column" fxFlex="70">
+                    <span>{{song.title}}</span>
+                    <span>Aadhi</span>
+                    <span>Hiphop</span>
+                </div>
+                <div fxFlex="30" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="100px">                    
+                    <span>05.30</span>
+                </div>
+            </div>
+        </div>
+    </div>               
+</div>
+
+<ng-template #noRecords>
+    <span>No records</span>
+</ng-template>
